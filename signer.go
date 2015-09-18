@@ -32,6 +32,9 @@ func hashSortedBigInt(lst []string) *big.Int {
 
 var goproxySignerVersion = ":goroxy1"
 
+// CertOrganisation organisation used to generate cert
+var CertOrganisation = "GoProxy untrusted MITM proxy Inc"
+
 func signHost(ca tls.Certificate, hosts []string) (cert tls.Certificate, err error) {
 	var x509ca *x509.Certificate
 
@@ -52,7 +55,7 @@ func signHost(ca tls.Certificate, hosts []string) (cert tls.Certificate, err err
 		SerialNumber: serial,
 		Issuer:       x509ca.Subject,
 		Subject: pkix.Name{
-			Organization: []string{"GoProxy untrusted MITM proxy Inc"},
+			Organization: []string{CertOrganisation},
 		},
 		NotBefore: start,
 		NotAfter:  end,
