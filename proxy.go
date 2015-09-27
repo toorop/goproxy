@@ -43,6 +43,8 @@ func copyHeaders(dst, src http.Header) {
 }
 
 func isEof(r *bufio.Reader) bool {
+	// panic: runtime error: slice bounds out of range
+
 	_, err := r.Peek(1)
 	if err == io.EOF {
 		return true
